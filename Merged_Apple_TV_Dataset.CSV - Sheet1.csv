@@ -1,0 +1,6 @@
+imdbid,total_viewership,total_cost,title,type,genres,releaseyear,imdbaveragerating,imdbnumvotes,availablecountries
+tt0109830,"34,734,598","190,432,453",Forrest Gump,movie,"Drama, Romance",1994,8.8,"2,392,180",NaN
+tt0169547,"50,470,477","177,855,951",American Beauty,movie,Drama,1999,8.3,"1,252,895",NaN
+tt0033467,"88,192,264","201,615,303",Citizen Kane,movie,"Drama, Mystery",1941,8.3,"483,494",NaN
+tt0017136,"31,139,963","298,735,921",Metropolis,movie,"Drama, Sci-Fi",1927,8.3,"195,466",NaN
+tt0266697,"72,642,325","195,496,574",Kill Bill: Vol. 1,movie,"Action, Crime, Thriller",2003,8.2,"1,256,354",NaN
