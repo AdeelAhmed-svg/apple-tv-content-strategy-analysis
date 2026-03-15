@@ -121,4 +121,258 @@ Correct format (ttxxxxx)
 
 what is this value? what does it mean?
 
+# Result: 
+
+**The `imdbId` column contains IMDb Title IDs in the format `tt` followed by 7+ digits (e.g., `tt2281215`, `tt0109830`).**
+
+## What It Means
+IMDb IDs are unique identifiers from IMDb.com's database. The `tt` prefix specifically identifies titles (movies, TV shows, episodes, etc.), distinguishing them from other entity types like:
+- `nm` + digits = people (actors, directors)
+- `rm` + digits = media assets
+
+For example:
+- `tt2281215` = "Elf-Man" (2011 movie) 
+- `tt0109830` = "Forrest Gump" (1994 movie) 
+- `tt0068646` = "The Godfather" (1972 movie)
+
+## Purpose in Dataset
+These IDs link Apple TV content to IMDb's rich metadata (ratings, cast, plot summaries, etc.). Empty values (40-55% missing in sample) mean no IMDb linkage for those entries.
+
+
+# Prompt 5:
+tell me 10 interesting question we could answer with this data set and explain why each would be valuable.
+
 # Result:
+
+Great — this is exactly how a strong data analyst thinks 👌
+
+Based on Apple_TV_Raw_Data.CSV dataset columns:
+
+`title, type, genres, releaseYear, imdbId, imdbAverageRating, imdbNumVotes, availableCountries`
+
+# Top 10 high-value analytical questions you can answer:
+
+
+
+# 1️⃣ Are Movies or TV Shows Rated Higher on Average?
+
+**Why valuable?**
+Helps understand audience preference.
+Streaming platforms can invest more in the better-performing format.
+
+
+
+# 2️⃣ Which Genres Have the Highest Average IMDb Ratings?
+
+**Why valuable?**
+Identifies high-quality content categories.
+Useful for:
+
+ Content acquisition strategy
+ Recommendation engines
+ Marketing targeting
+
+---
+
+# 3️⃣ Which Genres Get the Most Votes?
+
+**Why valuable?**
+Votes = engagement + popularity.
+High-vote genres drive subscriptions and retention.
+
+---
+
+# 4️⃣ Has Content Quality Improved Over Time?
+
+(Trend of `imdbAverageRating` by `releaseYear`)
+
+**Why valuable?**
+Shows whether newer releases are improving or declining in quality.
+
+
+
+# 5️⃣ What Year Had the Most Content Released?
+
+**Why valuable?**
+Identifies production booms.
+Could relate to streaming growth phases.
+
+
+
+# 6️⃣ Is There a Relationship Between Rating and Number of Votes?
+
+(Correlation between `imdbAverageRating` and `imdbNumVotes`)
+
+**Why valuable?**
+
+ Do highly rated titles also get more engagement?
+ Or are popular titles just heavily marketed?
+
+This gives business insight into quality vs popularity.
+
+
+
+# 7️⃣ What Are the Most Popular Titles (By Votes)?
+
+**Why valuable?**
+
+ Identifies blockbuster content
+ Can guide promotional campaigns
+ Good for “Top 10 Most Popular” dashboards
+
+
+
+# 8️⃣ What Percentage of Content Has Missing Ratings?
+
+Why valuable?
+
+ Shows dataset reliability
+ Low vote titles may not be statistically trustworthy
+
+Important for decision-making accuracy.
+
+
+# 9️⃣ Which Countries Have the Most Available Content?
+
+(Using `availableCountries`)
+
+**Why valuable?**
+
+ Helps understand global distribution
+ Identifies under-served markets
+ Useful for expansion strategy
+
+⚠ Currently this column has 99% missing which itself is a data quality insight.
+
+# 🔟 Are Older Movies Rated Differently Than New Movies?
+
+(Group ratings by decade)
+
+Why valuable?
+Nostalgia effect?
+Modern content bias?
+
+
+# Prompt 6:
+for questions 1, 2, 3, tell me exactly which column you'd need to use and whether the current data is sufficient to answer it.
+
+# Result:
+
+evaluate Questions 1, 2, and 3 properly.
+
+
+# 1️⃣ Are Movies or TV Shows Rated Higher on Average?
+
+### Columns Needed:
+
+`type`
+`imdbAverageRating`
+
+### Why:
+
+ `type` → tells us movie or tv
+ `imdbAverageRating` → needed to calculate average rating per group
+
+### Is Current Data Sufficient?
+
+ **Yes — mostly sufficient**
+
+BUT:
+
+ ~10% of `imdbAverageRating` values are missing
+ We must exclude null ratings before calculating averages
+
+### ⚠ Limitation:
+
+This tells us average rating, but not engagement.
+If we want a more reliable answer, we might also weight by:
+
+ `imdbNumVotes`
+
+
+# 2️⃣ Which Genres Have the Highest Average IMDb Ratings?
+
+###  Columns Needed:
+
+* `genres`
+* `imdbAverageRating`
+
+### Why:
+
+* `genres` → category classification
+* `imdbAverageRating` → quality metric
+
+### Is Current Data Sufficient?
+
+⚠ **Partially sufficient**
+
+the issue is:
+
+`genres` is a **comma-separated field**, like
+Horror, Sci-Fi, Short
+
+This means:
+One title can belong to multiple genres
+We must split the column into individual genres before analysis
+
+### ✅ After Cleaning:
+
+Yes, we can calculate average rating per genre.
+
+### ⚠ Limitations:
+
+* Missing ratings (~10%)
+* Some genres may have very few titles → small sample bias
+
+---
+
+# 3️⃣ Which Genres Get the Most Votes?
+
+### Columns Needed:
+
+`genres`
+  `imdbNumVotes`
+
+### Why:
+
+`genres` → category
+`imdbNumVotes` → popularity indicator
+
+### Is Current Data Sufficient?
+
+**Partially sufficient (same issue as Q2)**
+
+We must:
+
+1. Split genres into individual rows
+2. Aggregate votes per genre
+
+### ⚠ Additional Limitation:
+
+`imdbNumVotes` also has ~10% missing values
+  Extremely high vote counts (blockbusters) may skew results
+
+We may need:
+Median votes (not just average)
+Or log transformation for fairness
+
+# Summary Table
+
+| Question                 | Columns Needed            | Data Sufficient? | Cleaning Required?             |
+| ------------------------ | ------------------------- | ---------------- | ------------------------------ |
+| Q1: Movie vs TV rating   | type, imdbAverageRating   | ✅ Yes            | Remove null ratings           |
+| Q2: Highest rated genres | genres, imdbAverageRating | ⚠ Partial        | Split genres column            |
+| Q3: Most voted genres    | genres, imdbNumVotes      | ⚠ Partial        | Split genres + handle outliers |
+
+---
+
+# 🎯 Analyst Insight
+
+* Your dataset is strong enough to answer all three questions.
+* The biggest technical issue is the multi-value genres column.
+* Missing ratings/votes are manageable.
+* availableCountries is not useful for these questions.
+
+a bias.
+
+# Prompt 6
