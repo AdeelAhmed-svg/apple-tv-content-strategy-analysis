@@ -10,14 +10,13 @@ List All the columns in the attached and spreadsheet show me a sample data from 
 
 # Result:
 # | Column             | Sample Values                                                                                                                                                                                      
-| title              | "The Dare", (empty), (empty), "Prime Suspect 3", "Jurassic World Dominion - Extended Version", "Boy", "Forrest Gump", "American Beauty" 
-| type               | movie, tv, tv, tv, movie, movie, movie, movie                                                                                     |
-| genres             | "Horror, Sci-Fi, Short", (empty), "Comedy, Documentary", "Crime, Drama, Mystery", (empty), Drama, "Drama, Romance", Drama 
-| releaseYear        | 2021, 2019, 2023, 1993, 2022, 2012, 1994, 1999                                                                                   
-| imdbId             | tt33268380, (empty), (empty), tt0106104, (empty), tt2445032, tt0109830, tt0169547                                                      
-| imdbAverageRating  | (empty), (empty), (empty), 8.1, (empty), 6.5, 8.8, 8.3                                                                       
-| imdbNumVotes       | (empty), (empty), (empty), 4308, (empty), 63, 2392180, 1252899                                                       
-| availableCountries | "AR, BR, CL, CO, MX", "AT, CH, DE, FR, GB, IE, IT, US", AU, "AU, CA, NO, US", "AU, US", CA, (empty), (empty) 
+| title                             | type  | genres          | releaseYear | imdbId     | imdbAverageRating | imdbNumVotes | availableCountries |
+| --------------------------------- | ----- | --------------- | ----------- | ---------- | ----------------- | ------------ | ------------------ |
+| The Wedding Fix                   | movie | Comedy, Romance | 2022        | tt16381430 | 5.7               | 411          | NaN                |
+| Jesus: His Life                   | tv    | Drama, History  | 2019        | tt9637536  | 7.1               | 506          | NaN                |
+| Death Games                       | movie | Drama           | 1980        | tt0080737  | 4.4               | 198          | NaN                |
+| WWII's Most Daring Raids          | tv    | Documentary     | 2016        | tt7180738  | 7.5               | 49           | NaN                |
+| Hidcote: A Garden for All Seasons | movie | Documentary     | 2011        | tt2082296  | NaN               | NaN          | NaN                |
 
 # Prompt 2 
 List All the columns in the attached spreadsheet and show me a sample data from each column.
