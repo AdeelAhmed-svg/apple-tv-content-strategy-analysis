@@ -520,3 +520,69 @@ Instead of just counting titles, calculate:
 ```sql
 COUNT(genre) / SUM(COUNT(genre)) OVER (PARTITION BY releaseyear)
 
+
+
+## Prompt 10
+my goal is understand what content Apple TV should invest in next, Given this goal, which aspects of the data should we focus on?
+
+# Result:
+Excellent — now you’re thinking like a strategist, not just an analyst.
+
+If your goal is:
+
+> **What content should Apple TV invest in next?**
+
+Then counting genres alone is not enough.
+
+You need to focus on variables that connect **content type → performance → profitability → growth potential**.
+
+---
+
+# 1️⃣ Focus on Demand Signals (What Audiences Actually Watch)
+
+From your dataset, prioritize:
+
+### `total_viewership`
+
+This is your strongest demand indicator.
+
+Analyze:
+
+* Viewership by genre
+* Viewership by genre over time
+* Viewership per title (not just totals)
+
+Key Question:
+
+> Which genres generate the highest average viewership per title?
+
+Because a genre with fewer titles but high per-title performance = investment opportunity.
+
+Sometimes:
+
+* Crime works better as series
+* Action works better as film
+* Documentary works better short-form
+
+So analyze:
+
+Genre × Type performance.
+
+---
+
+# Strategic Framework for Decision
+
+To recommend what Apple TV should invest in next, combine:
+
+1. High average viewership
+2. Strong growth trend
+3. Good cost efficiency
+4. Low saturation
+5. Expanding international appeal
+
+The best genre is where these 5 intersect.
+
+
+final recommendation would look like:
+
+> “Apple TV should increase investment in [Genre X], particularly in [Series/Movie format], as it shows rising demand (+Y% since 2015), high average viewership per title, and superior cost efficiency compared to dominant but saturated genres like Drama.”
