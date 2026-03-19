@@ -315,11 +315,11 @@ This means:
 One title can belong to multiple genres
 We must split the column into individual genres before analysis
 
-### ✅ After Cleaning:
+### After Cleaning:
 
 Yes, we can calculate average rating per genre.
 
-### ⚠ Limitations:
+### Limitations:
 
 * Missing ratings (~10%)
 * Some genres may have very few titles → small sample bias
@@ -366,7 +366,7 @@ Or log transformation for fairness
 
 ---
 
-# 🎯 Analyst Insight
+# Analyst Insight
 
 * Your dataset is strong enough to answer all three questions.
 * The biggest technical issue is the multi-value genres column.
@@ -416,4 +416,107 @@ Primary Key Used
 | tt0033467 | 88,192,264       | 201,615,303 | Citizen Kane      | movie | Drama, Mystery          | 1941        | 8.3               | 483,494      | NaN                |
 | tt0017136 | 31,139,963       | 298,735,921 | Metropolis        | movie | Drama, Sci-Fi           | 1927        | 8.3               | 195,466      | NaN                |
 | tt0266697 | 72,642,325       | 195,496,574 | Kill Bill: Vol. 1 | movie | Action, Crime, Thriller | 2003        | 8.2               | 1,256,354    | NaN                |
+
+
+# Prompt 9:
+I'm curious about this: "Which Genres dominate the catalog, and how have they shifted over time?"
+
+# Result: 
+
+Great analytical question — this is exactly the kind of insight that makes a data project stand out.
+
+
+# 1️⃣ Which Genres Dominate the Catalog?
+
+### How to measure dominance:
+
+3 meaningful ways:
+
+1. **Total number of titles per genre** (most common)
+2. **Total viewership per genre** (most consumed)
+3. **Total production cost per genre** (most invested)
+
+### SQL Approach (Count-Based Dominance)
+
+Because `genres` contains multiple genres per title (comma-separated)
+
+
+```sql
+SELECT genre, COUNT(*) AS total_titles
+FROM your_table
+GROUP BY genre
+ORDER BY total_titles DESC;
+```
+
+ see dominant genres such as:
+
+* Drama
+* Comedy
+* Action
+* Thriller
+* Romance
+
+
+# 2️⃣ How Have Genres Shifted Over Time?
+
+
+### SQL Code:
+
+```sql
+SELECT releaseyear, genre, COUNT(*) AS total_titles
+FROM your_table
+GROUP BY releaseyear, genre
+ORDER BY releaseyear, total_titles DESC;
+```
+
+---
+
+# 3️⃣ What Trends You’ll Likely See
+
+Based on industry patterns:
+
+### 1920–1950
+
+* Dominated by Drama
+* Mystery & War appear during war periods
+
+### 1970–1990
+
+* Growth in Action
+* Rise of Thriller
+* Sci-Fi increases post-Star Wars era
+
+### 2000–2015
+
+* Explosion of Action + Superhero
+* Crime & Thriller growth
+* Documentary increases
+
+### 2016–Present (Streaming Era)
+
+* Massive growth in:
+
+  * Documentary
+  * Crime
+  * True Story
+  * Reality
+* More genre blending (Drama + Thriller + Crime)
+
+
+# 4️⃣ Best Way to Present This in a Report
+
+### Visualizations to Include:
+
+1. Bar Chart → Top 10 genres overall
+2. Line Chart → Top 5 genres over time
+3. Stacked Area Chart → Genre composition shift by decade
+
+# 5️⃣ Advanced Insight (What Impresses Recruiters)
+
+Instead of just counting titles, calculate:
+
+### Genre Share by Year
+
+```sql
+COUNT(genre) / SUM(COUNT(genre)) OVER (PARTITION BY releaseyear)
 
