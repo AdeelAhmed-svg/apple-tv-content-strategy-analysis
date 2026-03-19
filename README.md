@@ -513,8 +513,7 @@ Based on industry patterns:
 2. Line Chart → Top 5 genres over time
 3. Stacked Area Chart → Genre composition shift by decade
 
-# 5️⃣ Advanced Insight (What Impresses Recruiters)
-
+# 5️⃣ Advanced Insight 
 Instead of just counting titles, calculate:
 
 ### Genre Share by Year
