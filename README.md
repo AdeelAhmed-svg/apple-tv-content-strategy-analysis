@@ -38,14 +38,14 @@ take 5 more random sample of the data for each column to make sure you understan
 
 # Result
 # | Column             | Sample Values                                                                                                                                                              
-| title              | "Elf-Man", "Sabotage", "Forrest Gump", "The Godfather", "Jurassic Park"                                         
-| type               | movie, movie, movie, movie, movie                                                                                |
-| genres             | "Comedy, Family, Fantasy", "Action, Crime, Drama", "Drama, Romance", "Crime, Drama", "Action, Adventure, Sci-Fi"
-| releaseYear        | 2011, 2014, 1994, 1972, 1993                                                                                     
-| imdbId             | tt2281215, tt1742334, tt0109830, tt0068646, tt0107290                                                           
-| imdbAverageRating  | 3.5, 5.7, 8.8, 9.2, 8.2                                                                                          
-| imdbNumVotes       | 829, 67719, 2392180, 2137392, 1125703                                                                            
-| availableCountries | "AR, BR, CL, CO, MX", (empty), (empty), (empty), (empty)
+| title                             | type  | genres          | releaseYear | imdbId     | imdbAverageRating | imdbNumVotes | availableCountries |
+| --------------------------------- | ----- | --------------- | ----------- | ---------- | ----------------- | ------------ | ------------------ |
+| The Wedding Fix                   | movie | Comedy, Romance | 2022        | tt16381430 | 5.7               | 411          | NaN                |
+| Jesus: His Life                   | tv    | Drama, History  | 2019        | tt9637536  | 7.1               | 506          | NaN                |
+| Death Games                       | movie | Drama           | 1980        | tt0080737  | 4.4               | 198          | NaN                |
+| WWII's Most Daring Raids          | tv    | Documentary     | 2016        | tt7180738  | 7.5               | 49           | NaN                |
+| Hidcote: A Garden for All Seasons | movie | Documentary     | 2011        | tt2082296  | NaN               | NaN          | NaN                |
+
 
 # Prompt 4:
 Run a Data Quality Check on each column those specifically look for:
