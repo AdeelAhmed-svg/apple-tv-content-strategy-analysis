@@ -22,15 +22,16 @@ List All the columns in the attached and spreadsheet show me a sample data from 
 List All the columns in the attached spreadsheet and show me a sample data from each column.
 
 # Result
-# | Column             | Sample Values                                                                                                                                                         
-| title              | "The Dare", (empty), "Prime Suspect 3", "Jurassic World Dominion - Extended Version", "Boy", "Forrest Gump"
-| type               | movie, tv, tv, movie, movie, movie                                                                      
-| genres             | "Horror, Sci-Fi, Short", (empty), "Crime, Drama, Mystery", (empty), Drama, "Drama, Romance"
-| releaseYear        | 2021, 2019, 1993, 2022, 2012, 1994                                                                         
-| imdbId             | tt33268380, (empty), tt0106104, (empty), tt2445032, tt0109830                                             
-| imdbAverageRating  | (empty), (empty), 8.1, (empty), 6.5, 8.8                                                                   
-| imdbNumVotes       | (empty), (empty), 4308, (empty), 63, 2392180                                                                
-| availableCountries | "AR, BR, CL, CO, MX", "AT, CH, DE, FR, GB, IE, IT, US", "AU, CA, NO, US", "AU, US", CA, (empty)
+| Column             | Missing Count | Missing % |
+| ------------------ | ------------- | --------- |
+| title              | 589           | 3.11%     |
+| type               | 0             | 0%       |
+| genres             | 699           | 3.69%     |
+| releaseYear        | 35            | 0.18%     |
+| imdbId             | 1580          | 8.33%     |
+| imdbAverageRating  | 1964          | 10.36%    |
+| imdbNumVotes       | 1964          | 10.36%    |
+| availableCountries | 18,901        | 99.70%  |
 
 # Prompt 3:
 take 5 more random sample of the data for each column to make sure you understand the format and type of information in each column.
