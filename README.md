@@ -80,16 +80,18 @@ The dataset is a CSV Analysis from parsed snippets shows high missing rates in I
 ## Missing/Empty Values
 Counts and percentages estimated from ~20 sample rows (true full-file needs full load; ~30-90% missing in key fields).
 
-# | Column           | Missing Count (Sample) | % Missing (Sample) 
+| Column             | Data Type | Observation                       |
+| ------------------ | --------- | --------------------------------- |
+| title              | object    | Correct (text)                    |
+| type               | object    | Only 2 unique values (movie/tv)    |
+| genres             | object    | Comma-separated string            |
+| releaseYear        | float64   | Should ideally be integer         |
+| imdbId             | object    | Correct format (ttxxxxx)          |
+| imdbAverageRating  | float64   | Correct numeric format            |
+| imdbNumVotes       | float64   | Should ideally be integer         |
+| availableCountries | object    | Very sparse                       |
 
-| title              | 2                      | 10% 
-| type               | 0                      | 0%  
-| genres             | 5                      | 25%  
-| releaseYear        | 0                      | 0%  
-| imdbId             | 8                      | 40%  
-| imdbAverageRating  | 11                     | 55%  
-| imdbNumVotes       | 11                     | 55%  
-| availableCountries | 12                     | 60% 
+
 
 ## Unexpected Formats/Data Types
 - title: Strings; some empty. No outliers. 
