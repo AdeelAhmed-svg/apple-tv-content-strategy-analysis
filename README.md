@@ -375,4 +375,45 @@ Or log transformation for fairness
 
 a bias.
 
-# Prompt 6
+# Prompt 7
+**apple_internsl_info_-_Sheet1.xlsx**
+I just received this dataset from a colleague. Your task is explore and explain the relationships this new dataset with the original one and how they might be used to join data together.
+
+# Result:
+**The new Excel file ("apple_internal_info_-_Sheet1.xlsx") provides internal Apple metrics that perfectly complement the original CSV's content metadata.** Both share `imdbId` as the unique key, enabling seamless joins.
+
+## Dataset Structures
+**Original CSV (file:1)**: ~5K+ rows of Apple TV catalog data. Columns: `titletype`, `genres`, `releaseYear`, `imdbId`, `imdbAverageRating`, `imdbNumVotes`, `availableCountries`. Focus: availability, ratings, genres.
+
+**New Excel (file:21)**: ~1K+ rows of financial/viewership data. Columns: `imdbId`, `totalviewership` (views), `totalcost` (acquisition/production $). Focus: business performance. Examples: tt0988045 (52M views, $200M cost); tt0462465 (2M views, $211M cost)
+
+## Key Relationships
+- **Primary Join**: `imdbId` (exact match, tt-prefixed). ~1K overlapping titles—internal data subset of catalog.
+- **Business Insights**: High-cost/low-view titles = poor ROI; PK-available hits = local priorities.
+- **No Direct Country Link**: Viewership/cost aggregated (not per-country), but join + filter original's `availableCountries` LIKE '%PK%' for Pakistan analysis.
+
+| Aspect | Original CSV | New Excel | Joined Value |
+|--------|--------------|-----------|--------------|
+| Rows | 5K+ titles | 1K+ titles | Enriched 1K titles |
+| Core Key | imdbId | imdbId | LEFT JOIN on imdbId |
+| Sample Match | tt10925434 (Holiday Hearts) | tt0988045 (high views) | ROI = views/cost |
+| SQL Example | SELECT * FROM csv LEFT JOIN excel ON csv.imdbId = excel.imdbId | - | Reveals money-makers |
+
+# Prompt 8
+merge the dataset using imdbid as the primary key.
+
+# Result
+Merge Summary
+Total Rows: 2,513,789
+Total Columns: 10
+Join Type: Inner Join
+Primary Key Used
+
+| imdbid    | total_viewership | total_cost  | title             | type  | genres                  | releaseyear | imdbaveragerating | imdbnumvotes | availablecountries |
+| --------- | ---------------- | ----------- | ----------------- | ----- | ----------------------- | ----------- | ----------------- | ------------ | ------------------ |
+| tt0109830 | 34,734,598       | 190,432,453 | Forrest Gump      | movie | Drama, Romance          | 1994        | 8.8               | 2,392,180    | NaN                |
+| tt0169547 | 50,470,477       | 177,855,951 | American Beauty   | movie | Drama                   | 1999        | 8.3               | 1,252,895    | NaN                |
+| tt0033467 | 88,192,264       | 201,615,303 | Citizen Kane      | movie | Drama, Mystery          | 1941        | 8.3               | 483,494      | NaN                |
+| tt0017136 | 31,139,963       | 298,735,921 | Metropolis        | movie | Drama, Sci-Fi           | 1927        | 8.3               | 195,466      | NaN                |
+| tt0266697 | 72,642,325       | 195,496,574 | Kill Bill: Vol. 1 | movie | Action, Crime, Thriller | 2003        | 8.2               | 1,256,354    | NaN                |
+
